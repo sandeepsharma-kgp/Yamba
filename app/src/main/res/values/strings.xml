@@ -5,4 +5,15 @@
     <string name="hint_status">What\'s going on?</string>
     <string name="textView">140</string>
     <string name="sign_out">SignOut</string>
+    <string name="username_summary">Username</string>
+    <string name="password_summary">Password</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="actions_settings">actions_settings</string>
+    <string name="refresh">Refresh</string>
+    <string name="tweet">tweet</string>
+    <string name="purge">purge</string>
+    <string name="apiRoot">apiRoot</string>
+    <string name="apiRoot_summary">apiRoot_summary</string>
+    <string name="status_update">StatusUpdate</string>
 </resources>
