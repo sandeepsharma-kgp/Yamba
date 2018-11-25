@@ -28,9 +28,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.action_settings:
-                    startActivity(new Intent(this, SettingsActivity.class));
-                    return true;
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
             case R.id.action_tweet:
+                startActivity(new Intent(this, StatusActivity.class));
+                return true;
+            case R.id.itemServiceStart:
+                    startService(new Intent(this, RefreshService.class));
+                    return true;
+            case R.id.itemPrefs:
                     startActivity(new Intent(this, StatusActivity.class));
                     return true;
                     default:

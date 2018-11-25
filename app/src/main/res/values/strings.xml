@@ -16,4 +16,6 @@
     <string name="apiRoot">apiRoot</string>
     <string name="apiRoot_summary">apiRoot_summary</string>
     <string name="status_update">StatusUpdate</string>
+    <string name="titlePrefs">Prefs</string>
+    <string name="itemRefresh">Refresh</string>
 </resources>

@@ -21,4 +21,12 @@
         android:icon="@android:drawable/ic_menu_delete"
         android:title="@string/purge">
     </item>
+    <item
+        android:id="@+id/itemPrefs"
+        android:title="@string/titlePrefs"
+        android:icon="@android:drawable/ic_menu_preferences" />
+    <item
+        android:title="@string/itemRefresh"
+        android:id="@+id/itemServiceStart"
+        android:icon="@android:drawable/ic_menu_rotate" />
 </menu>
