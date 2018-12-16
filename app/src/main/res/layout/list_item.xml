@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" >
+    android:paddingBottom="@dimen/activity_vertical_margin">
 
     <TextView
         android:id="@+id/list_item_text_user"
@@ -33,19 +33,19 @@
         android:id="@+id/list_item_text_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@+id/list_item_text_created_at"
+        android:layout_alignParentLeft="true"
         android:autoLink="web"
         android:focusable="false"
         android:linksClickable="true"
         android:text="Android just became the #1 OS on the planet. Take that, Microsoft! http://t.co/123"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <com.vali.yamba.FreshnessView
+    <com.marakana.android.yamba.FreshnessView
         android:id="@+id/list_item_freshness"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/list_item_text_message" />
+        android:layout_below="@+id/list_item_text_message"
+        android:layout_alignParentLeft="true" />
 
 </RelativeLayout>
