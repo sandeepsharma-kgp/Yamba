@@ -23,11 +23,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    //Called every time user click on an action
+    // Called every time user clicks on an action
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_refresh:
+            case R.id.itemRefresh:
                 startService(new Intent(this, RefreshService.class));
                 return true;
             case R.id.itemPrefs:

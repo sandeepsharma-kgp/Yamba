@@ -27,6 +27,6 @@
         android:icon="@android:drawable/ic_menu_preferences" />
     <item
         android:title="@string/itemRefresh"
-        android:id="@+id/itemServiceStart"
+        android:id="@+id/itemRefresh"
         android:icon="@android:drawable/ic_menu_rotate" />
 </menu>
