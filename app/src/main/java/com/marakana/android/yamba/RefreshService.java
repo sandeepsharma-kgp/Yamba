@@ -37,6 +37,7 @@ public class RefreshService extends IntentService {
                 .getDefaultSharedPreferences(this);
         final String username = prefs.getString("username", "");
         final String password = prefs.getString("password", "");
+
         // Check that username and password are not empty
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please update your username and password",
@@ -44,8 +45,12 @@ public class RefreshService extends IntentService {
             return;
         }
         Log.d(TAG, "onStarted");
+
+        DbHelper dbHelper = new DbHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        YambaClient cloud = new YambaClient(username, password);
+
+        YambaClient cloud = new YambaClient(username, password, "http://yamba.newcircle.com/api");
         try {
             int count = 0;
             List<Status> timeline = cloud.getTimeline(20);
@@ -53,9 +58,10 @@ public class RefreshService extends IntentService {
                 values.clear();
                 values.put(StatusContract.Column.ID, status.getId());
                 values.put(StatusContract.Column.USER, status.getUser());
-                values.put(StatusContract.Column.Message, status.getMessage());
+                values.put(StatusContract.Column.MESSAGE, status.getMessage());
                 values.put(StatusContract.Column.CREATED_AT, status
                         .getCreatedAt().getTime());
+
                 Uri uri = getContentResolver().insert(
                         StatusContract.CONTENT_URI, values);
                 if (uri != null) {

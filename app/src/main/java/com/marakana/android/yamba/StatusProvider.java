@@ -50,13 +50,16 @@ public class StatusProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         Uri ret = null;
+
         // Assert correct uri
         if (sURIMatcher.match(uri) != StatusContract.STATUS_DIR) {
             throw new IllegalArgumentException("Illegal uri: " + uri);
         }
+
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long rowId = db.insertWithOnConflict(StatusContract.TABLE, null,
                 values, SQLiteDatabase.CONFLICT_IGNORE);
+
         // Was insert successful?
         if (rowId != -1) {
             long id = values.getAsLong(StatusContract.Column.ID);
@@ -66,6 +69,7 @@ public class StatusProvider extends ContentProvider {
             // Notify that data for this uri has changed
             getContext().getContentResolver().notifyChange(uri, null);
         }
+
         return ret;
     }
 

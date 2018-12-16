@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DbHelper extends SQLiteOpenHelper {
+
     private static final String TAG = DbHelper.class.getSimpleName();
 
     public DbHelper(Context context) {
@@ -20,7 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
                         StatusContract.TABLE,
                         StatusContract.Column.ID,
                         StatusContract.Column.USER,
-                        StatusContract.Column.Message,
+                        StatusContract.Column.MESSAGE,
                         StatusContract.Column.CREATED_AT);
         Log.d(TAG, "onCreate wit SQL: " + sql);
         db.execSQL(sql);
