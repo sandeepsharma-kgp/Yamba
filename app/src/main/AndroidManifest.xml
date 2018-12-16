@@ -4,6 +4,7 @@
     package="com.marakana.android.yamba">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -46,6 +47,12 @@
             android:name="com.marakana.android.yamba.StatusProvider"
             android:authorities="com.marakana.android.yamba.StatusProvider"
             android:exported="false" />
+
+        <receiver android:name=".BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

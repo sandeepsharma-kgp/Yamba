@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,7 +19,7 @@ import com.marakana.android.yamba.clientlib.YambaClient.Status;
 import com.marakana.android.yamba.clientlib.YambaClientException;
 
 public class RefreshService extends IntentService {
-    static final String TAG = "RefreshService";
+    private static final String TAG = "RefreshService";
 
     public RefreshService() {
         super(TAG);
@@ -40,14 +41,13 @@ public class RefreshService extends IntentService {
 
         // Check that username and password are not empty
         if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please update your username and password",
+            Toast.makeText(this,
+                    "Please update your username and password",
                     Toast.LENGTH_LONG).show();
             return;
         }
         Log.d(TAG, "onStarted");
 
-        DbHelper dbHelper = new DbHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
         YambaClient cloud = new YambaClient(username, password, "http://yamba.newcircle.com/api");
@@ -59,8 +59,7 @@ public class RefreshService extends IntentService {
                 values.put(StatusContract.Column.ID, status.getId());
                 values.put(StatusContract.Column.USER, status.getUser());
                 values.put(StatusContract.Column.MESSAGE, status.getMessage());
-                values.put(StatusContract.Column.CREATED_AT, status
-                        .getCreatedAt().getTime());
+                values.put(StatusContract.Column.CREATED_AT, status.getCreatedAt().getTime());
 
                 Uri uri = getContentResolver().insert(
                         StatusContract.CONTENT_URI, values);
@@ -70,6 +69,12 @@ public class RefreshService extends IntentService {
                             String.format("%s: %s", status.getUser(),
                                     status.getMessage()));
                 }
+
+            }
+            if (count > 0) {
+                sendBroadcast(new Intent("com.marakana.android.yamba.action.NEW_STATUSES")
+                        .putExtra(
+                                "count", count));
             }
         } catch (YambaClientException e) {
             Log.e(TAG, "Failed to fetch the timeline", e);
@@ -84,4 +89,5 @@ public class RefreshService extends IntentService {
         super.onDestroy();
         Log.d(TAG, "onDestroyed");
     }
+
 }
