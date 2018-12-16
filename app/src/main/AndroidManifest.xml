@@ -14,15 +14,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <service android:name=".RefreshService" />
-
-        <provider
-            android:name="com.marakana.android.yamba.StatusProvider"
-            android:authorities="com.marakana.android.yamba.StatusProvider"
-            android:exported="false" />
-
         <activity android:name="com.marakana.android.yamba.StatusActivity"
             android:label="@string/status_update">
+            <intent-filter>
+                <action android:name="android.intent.action.tweet" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
         <activity android:name="com.marakana.android.yamba.MainActivity">
@@ -37,6 +35,17 @@
             android:name="com.marakana.android.yamba.SettingsActivity"
             android:label="@string/action_settings">
         </activity>
+
+        <activity
+            android:name="com.marakana.android.yamba.DetailsActivity">
+        </activity>
+
+        <service android:name=".RefreshService" />
+
+        <provider
+            android:name="com.marakana.android.yamba.StatusProvider"
+            android:authorities="com.marakana.android.yamba.StatusProvider"
+            android:exported="false" />
     </application>
 
 </manifest>
